@@ -125,7 +125,7 @@ Note the URL for your dashboard in the output:
 server starting on http://localhost:6015
 ```
 
-Open this URL in your browser and follow the **Watson Recipe Bot Configuration** steps below.
+Open this URL in your browser. Then follow the **Watson Recipe Bot Configuration** steps below.
 
 ### Deploying the Dashboard to Bluemix, cont.
 
@@ -143,7 +143,4 @@ SNS_API_KEY=NDc4gxGdqhWyaX
 Set **SNS_API_URL** to the URL for your Simple Notification Service and set **SNS_API_KEY** to the SNS key generated above.
 
 Restart your Watson Recipe Bot and start chatting with sous-chef.
-
-### How It Works
-
-
+If everything is working properly you should start seeing Users and Actions in the dashboard.
