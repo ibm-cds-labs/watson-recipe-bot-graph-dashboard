@@ -4,7 +4,7 @@ The Watson Recipe Bot Dashboard is a web application that shows conversations wi
 [Watson Recipe Bot](https://github.com/ibm-cds-labs/watson-recipe-bot-python-graph) as they are happening in realtime.
 Here is a sample screenshot of the dashboard:
 
-![Watson Recipe Bot Dashboard](screenshots/dashboard1.png?rev=1&raw=true)
+![Watson Recipe Bot Dashboard](screenshots/dashboard1.png?rev=2&raw=true)
 
 ### Quick Reference
 
