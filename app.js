@@ -8,6 +8,8 @@ dotenv.config();
 
 var snsApiUrl = process.env.SNS_API_URL;
 var snsApiKey = process.env.SNS_API_KEY;
+var graphUrl;
+var graphClient;
 
 // create graph client
 if (process.env.VCAP_SERVICES) {
@@ -17,9 +19,10 @@ if (process.env.VCAP_SERVICES) {
         var config = vcapServices[graphService][0];
     }
 }
-
-var graphClient = new GDS({
-    url: process.env.GRAPH_API_URL || config.credentials.apiURL,
+graphUrl = process.env.GRAPH_API_URL || config.credentials.apiURL;
+graphUrl = graphUrl.substring(0,graphUrl.lastIndexOf('/')+1) + process.env.GRAPH_ID;
+graphClient = new GDS({
+    url: graphUrl,
     username: process.env.GRAPH_USERNAME || config.credentials.username,
     password: process.env.GRAPH_PASSWORD || config.credentials.password,
 });
@@ -56,7 +59,7 @@ app.set('view engine', 'ejs');
 
 // map requests
 app.get('/', function(req, res) {
-    res.render('index.ejs', {snsApiUrl: snsApiUrl});
+    res.render('index.ejs', {snsApiUrl: snsApiUrl, snsApiKey: snsApiKey});
 });
 
 // get the app environment from Cloud Foundry

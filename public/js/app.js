@@ -1,7 +1,8 @@
 var app = new Vue({
     el: '#app',
     data: {
-        snsApiUrl: '',
+        snsApiUrl: snsApiUrl,
+        snsApiKey: snsApiKey,
         users: [],
         activeUser: { name: null, state: null, notifications: [], graph: null},
         activeState: null,
@@ -35,7 +36,7 @@ var app = new Vue({
     }
 });
 
-var sns = new SNSClient("demokey", {
+var sns = new SNSClient(app.snsApiKey, {
     userData: {
         type: 'action',
         name: 'dashboard'
