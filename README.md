@@ -109,16 +109,17 @@ Once you have the Simple Notification Service running you will need to generate 
 
 1. Go to the Simple Notification Service in your web browser (ex: http://my-simple-notification-service.mybluemix.net/)
 2. Click **Adminstration** in the left nav.
-3. Enter *Add a New Key* and enter the host name. If you are running the dashboard locally use *localhost*.
+3. Under *Add a New Key*  enter the hostname for the dashboard. If you are running the dashboard locally use *localhost*.
 If you are running the dashboard in Bluemix use your Bluemix path (ex. *my-simple-notification-service.mybluemix.net*).  
+4. Click **Generate Key**:
 
     ![SNS](screenshots/sns_apikey1.png?rev=1&raw=true)
 
-4. You should see your API key show up under **Existing Keys**: 
+5. Click **Submit**. You should see your API key show up under **Existing Keys**: 
 
     ![SNS](screenshots/sns_apikey2.png?rev=1&raw=true)
     
-5. Take note of the key. You will use this to set the SNS_API_KEY variable in the .env files for the dashboard and the Watson Recipe Bot.
+6. Take note of the key. You will use this to set the SNS_API_KEY variable in the .env files for the dashboard and the Watson Recipe Bot.
 
 
 ### Watson Recipe Bot Configuration
