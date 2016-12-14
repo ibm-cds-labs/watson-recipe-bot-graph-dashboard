@@ -38,7 +38,7 @@ including setting up the appropriate Bluemix services such as IBM Graph and Reth
 
 If you haven't already installed Node.js you can install it by following the instructions [here](https://nodejs.org/en/).
 
-From the command-line cd into the watson-recipe-bot-graph-dashboard directory (clone it first if you have not already cloned it):
+From the command-line cd into the watson-recipe-bot-graph-dashboard directory (clone it first if you haven't already):
 
 ```
 git clone https://github.com/ibm-cds-labs/watson-recipe-bot-graph-dashboard
