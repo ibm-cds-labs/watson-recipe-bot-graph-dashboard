@@ -47,7 +47,7 @@ var sns = new SNSClient(app.snsApiKey, {
 });
 
 sns.on('connected', function() {
-    Vue.http.get(app.snsApiUrl + '/demokey/historical?type=action')
+    Vue.http.get(app.snsApiUrl + '/' + app.snsApiKey + '/historical?type=action')
         .then(function(res) {
             if (res.ok && res.data.success) {
                 for (var i=res.data.notifications.length-1; i>=0; i--) {

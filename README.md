@@ -16,7 +16,7 @@ GRAPH_USERNAME=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 GRAPH_PASSWORD=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 GRAPH_ID=watson_recipe_bot
 SNS_API_URL=http://my-simple-notification-service.mybluemix.net
-SNS_API_KEY=demokey
+SNS_API_KEY=NDc4gxGdqhWyaX
 ```
 We will show you how to configure the necessary services and retrieve these values in the instructions below:
 
@@ -103,14 +103,14 @@ If you are running the dashboard in Bluemix use your Bluemix path (ex. *my-simpl
     
 6. Take note of the key. You will use this to set the SNS_API_KEY variable in the .env files for the dashboard and the Watson Recipe Bot.
 
-Continue to the appropriate section below to finish deploying the dashboard locally, or to Bluemix.
+Continue to the appropriate section below to finish running the dashboard locally, or deploying to Bluemix.
 
-### Finish Deploying the Dashboard Locally
+### Running the Dashboard Locally, cont.
 
  Once you have an SNS API Key add it to the .env file like so:
 
 ```
-SNS_API_KEY=jCkGirEfu2ItNv
+SNS_API_KEY=NDc4gxGdqhWyaX
 ```
 
 Start the dashboard:
@@ -127,7 +127,7 @@ server starting on http://localhost:6015
 
 Open this URL in your browser and follow the **Watson Recipe Bot Configuration** steps below.
 
-### Finish Deploying the Dashboard to Bluemix
+### Deploying the Dashboard to Bluemix, cont.
 
 Coming soon!
 
@@ -137,7 +137,7 @@ Stop your Watson Recipe Bot application if it is running. Edit the .env file and
 
 ```
 SNS_API_URL=http://my-simple-notification-service.mybluemix.net
-SNS_API_KEY=jCkGirEfu2ItNv
+SNS_API_KEY=NDc4gxGdqhWyaX
 ```
 
 Set **SNS_API_URL** to the URL for your Simple Notification Service and set **SNS_API_KEY** to the SNS key generated above.
