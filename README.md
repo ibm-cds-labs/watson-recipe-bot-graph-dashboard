@@ -77,27 +77,9 @@ If you are running the SNS locally it will look something like this:
 SNS_API_URL=http://localhost:6016
 ```
 
-Follow the instructions in the **SNS API Key** section below to generate an SNS API Key. When generating the key use **localhost** as the Hostname.
+Skip ahead to the **SNS API Key** section below to generate an SNS API Key. When generating the key use **localhost** as the Hostname.
 This is the hostname for the client that will be connecting to the SNS (which is this application, the dashboard).
-In this case we are running the dashboard locally. Once you have an SNS API Key add it to the .env file like so:
-
-```
-SNS_API_KEY=jCkGirEfu2ItNv
-```
-
-Start the dashboard:
-
-```
-npm start
-```
-
-Note the URL for your dashboard in the output:
-
-```
-server starting on http://localhost:6015
-```
-
-Open this URL in your browser and follow the **Watson Recipe Bot Configuration** steps below.
+In this case we are running the dashboard locally.
 
 ### Deploying the Dashboard to Bluemix
 
@@ -121,6 +103,33 @@ If you are running the dashboard in Bluemix use your Bluemix path (ex. *my-simpl
     
 6. Take note of the key. You will use this to set the SNS_API_KEY variable in the .env files for the dashboard and the Watson Recipe Bot.
 
+Continue to the appropriate section below to finish deploying the dashboard locally, or to Bluemix.
+
+### Finish Deploying the Dashboard Locally
+
+ Once you have an SNS API Key add it to the .env file like so:
+
+```
+SNS_API_KEY=jCkGirEfu2ItNv
+```
+
+Start the dashboard:
+
+```
+npm start
+```
+
+Note the URL for your dashboard in the output:
+
+```
+server starting on http://localhost:6015
+```
+
+Open this URL in your browser and follow the **Watson Recipe Bot Configuration** steps below.
+
+### Finish Deploying the Dashboard to Bluemix
+
+Coming soon!
 
 ### Watson Recipe Bot Configuration
 
