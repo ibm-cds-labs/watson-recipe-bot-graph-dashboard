@@ -16,6 +16,7 @@ let graphClient;
 (function() {
     // load from .env
     dotenv.config();
+    // load sns variables
     snsApiUrl = process.env.SNS_API_URL;
     if (snsApiUrl.endsWith('/')) {
         snsApiUrl = snsApiUrl.substring(0, snsApiUrl.length - 1);
