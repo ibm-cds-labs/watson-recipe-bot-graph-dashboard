@@ -21,7 +21,6 @@ let graphClient;
         snsApiUrl = snsApiUrl.substring(0, snsApiUrl.length - 1);
     }
     snsApiKey = process.env.SNS_API_KEY;
-
     // create graph client
     let config;
     if (process.env.VCAP_SERVICES) {
@@ -43,6 +42,14 @@ let graphClient;
     });
 })();
 
+app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res) {
+    res.render('index.ejs', {snsApiUrl: snsApiUrl, snsApiKey: snsApiKey});
+});
+
 app.get('/graph/:user', function(req, res) {
     let user = req.params.user;
     let query = `g.V().hasLabel("person").has("name", "${user}").union(outE().inV().hasLabel("ingredient"), outE().inV().hasLabel("cuisine"), outE().inV().outE().inV()).path()`;
@@ -60,20 +67,6 @@ app.get('/graph/:user', function(req, res) {
     });
 });
 
-// serve the files out of ./public as our main files
-app.use(express.static(__dirname + '/public'));
-
-// set view engine and map views directory
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
-// map requests
-app.get('/', function(req, res) {
-    res.render('index.ejs', {snsApiUrl: snsApiUrl, snsApiKey: snsApiKey});
-});
-
-// start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
-  // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
 });
