@@ -1,42 +1,51 @@
-var express = require('express');
-var cfenv = require('cfenv');
-var dotenv = require('dotenv');
-var GDS = require('ibm-graph-client');
+'use strict';
 
-// load from .env
-dotenv.config();
+const express = require('express');
+const cfenv = require('cfenv');
+const dotenv = require('dotenv');
+const GDS = require('ibm-graph-client');
 
-var snsApiUrl = process.env.SNS_API_URL;
-if (snsApiUrl.endsWith('/')) {
-    snsApiUrl = snsApiUrl.substring(0,snsApiUrl.length - 1);
-}
-var snsApiKey = process.env.SNS_API_KEY;
+const appEnv = cfenv.getAppEnv();
+const app = express();
 
-// create graph client
-if (process.env.VCAP_SERVICES) {
-    var vcapServices = JSON.parse(process.env.VCAP_SERVICES);
-    var graphService = 'IBM Graph';
-    if (vcapServices[graphService] && vcapServices[graphService].length > 0) {
-        var config = vcapServices[graphService][0];
+let snsApiUrl;
+let snsApiKey;
+let graphUrl;
+let graphClient;
+
+(function() {
+    // load from .env
+    dotenv.config();
+    snsApiUrl = process.env.SNS_API_URL;
+    if (snsApiUrl.endsWith('/')) {
+        snsApiUrl = snsApiUrl.substring(0, snsApiUrl.length - 1);
     }
-}
-var graphUrl = process.env.GRAPH_API_URL || config.credentials.apiURL;
-graphUrl = graphUrl.substring(0,graphUrl.lastIndexOf('/')+1) + process.env.GRAPH_ID;
-var graphClient = new GDS({
-    url: graphUrl,
-    username: process.env.GRAPH_USERNAME || config.credentials.username,
-    password: process.env.GRAPH_PASSWORD || config.credentials.password,
-});
-graphClient.session((error, token) => {
-    graphClient.config.session = token;
-});
+    snsApiKey = process.env.SNS_API_KEY;
 
-// create a new express server
-var app = express();
+    // create graph client
+    let config;
+    if (process.env.VCAP_SERVICES) {
+        let vcapServices = JSON.parse(process.env.VCAP_SERVICES);
+        let graphService = 'IBM Graph';
+        if (vcapServices[graphService] && vcapServices[graphService].length > 0) {
+            config = vcapServices[graphService][0];
+        }
+    }
+    graphUrl = process.env.GRAPH_API_URL || config.credentials.apiURL;
+    graphUrl = graphUrl.substring(0, graphUrl.lastIndexOf('/') + 1) + process.env.GRAPH_ID;
+    graphClient = new GDS({
+        url: graphUrl,
+        username: process.env.GRAPH_USERNAME || config.credentials.username,
+        password: process.env.GRAPH_PASSWORD || config.credentials.password,
+    });
+    graphClient.session((error, token) => {
+        graphClient.config.session = token;
+    });
+})();
 
 app.get('/graph/:user', function(req, res) {
-    var user = req.params.user;
-    var query = `g.V().hasLabel("person").has("name", "${user}").union(outE().inV().hasLabel("ingredient"), outE().inV().hasLabel("cuisine"), outE().inV().outE().inV()).path()`;
+    let user = req.params.user;
+    let query = `g.V().hasLabel("person").has("name", "${user}").union(outE().inV().hasLabel("ingredient"), outE().inV().hasLabel("cuisine"), outE().inV().outE().inV()).path()`;
     console.log('Querying graph: ' + query);
     graphClient.gremlin(`def g = graph.traversal(); ${query}`, (error, response) => {
         if (error) {
@@ -62,9 +71,6 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
     res.render('index.ejs', {snsApiUrl: snsApiUrl, snsApiKey: snsApiKey});
 });
-
-// get the app environment from Cloud Foundry
-var appEnv = cfenv.getAppEnv();
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
