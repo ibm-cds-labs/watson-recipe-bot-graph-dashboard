@@ -1,5 +1,7 @@
 # Watson Recipe Bot Dashboard
 
+:no_entry_sign: This project is no longer maintained.
+
 The Watson Recipe Bot Dashboard is a web application that shows conversations with the 
 [Watson Recipe Bot](https://github.com/ibm-cds-labs/watson-recipe-bot-python-graph) as they are happening in realtime.
 Here is a sample screenshot of the dashboard:
